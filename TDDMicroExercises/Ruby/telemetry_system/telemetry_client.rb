@@ -25,7 +25,7 @@ class TelemetryClient
     @online_status = success
   end
 
-  def disconnect 
+  def disconnect
     @online_status = false
   end
 

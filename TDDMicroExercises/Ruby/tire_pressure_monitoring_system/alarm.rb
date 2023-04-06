@@ -1,22 +1,32 @@
+# frozen_string_literal: true
+
 require_relative './sensor'
 
+# Alarm logic
 class Alarm
-
   attr_reader :alarm_on
 
-  def initialize
-    @sensor = Sensor.new
+  LOW_PRESSURE = 17
+  HIGH_PRESSURE = 21
+
+  def initialize(sensor = Sensor.new)
+    @sensor = sensor
     @alarm_on = false
   end
 
   def check
-    pressure = @sensor.pop_next_pressure_psi_value()
+    @alarm_on = true unless valid_pressure?(pressure_value)
+  end
 
-    @alarm_on = true if pressure < LOW_PRESSURE || HIGH_PRESSURE < pressure
-    end
+  private
 
-private
+  attr_reader :sensor
 
-  LOW_PRESSURE = 17
-  HIGH_PRESSURE = 21
+  def pressure_value
+    sensor.pop_next_pressure_psi_value
+  end
+
+  def valid_pressure?(pressure)
+    pressure >= LOW_PRESSURE && pressure <= HIGH_PRESSURE
+  end
 end

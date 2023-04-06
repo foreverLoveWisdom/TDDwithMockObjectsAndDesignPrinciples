@@ -6,11 +6,11 @@ class Sensor
   private_constant :OFFSET
 
   def pop_next_pressure_psi_value
-    OFFSET + read_sample_pressure()
+    OFFSET + read_sample_pressure
   end
 
   def read_sample_pressure
-    #Simulate info read from a real sensor in a real tire
+    # Simulate info read from a real sensor in a real tire
     6 * rand * rand
   end
 end
