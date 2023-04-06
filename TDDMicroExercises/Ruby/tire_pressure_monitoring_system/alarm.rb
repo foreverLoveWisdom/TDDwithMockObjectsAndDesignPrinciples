@@ -8,25 +8,32 @@ class Alarm
 
   LOW_PRESSURE = 17
   HIGH_PRESSURE = 21
+  PRESSURE_RANGE = (LOW_PRESSURE..HIGH_PRESSURE)
 
-  def initialize(sensor = Sensor.new)
-    @sensor = sensor
+  def initialize
     @alarm_on = false
   end
 
-  def check
-    @alarm_on = true unless valid_pressure?(pressure_value)
+  def check(sensor = Sensor.new)
+    return if valid_pressure?(sensor.pop_next_pressure_psi_value)
+
+    turn_on_alarm
   end
 
   private
 
   attr_reader :sensor
+  attr_writer :alarm_on
+
+  def turn_on_alarm
+    self.alarm_on = true
+  end
 
   def pressure_value
     sensor.pop_next_pressure_psi_value
   end
 
   def valid_pressure?(pressure)
-    pressure >= LOW_PRESSURE && pressure <= HIGH_PRESSURE
+    PRESSURE_RANGE.cover?(pressure)
   end
 end

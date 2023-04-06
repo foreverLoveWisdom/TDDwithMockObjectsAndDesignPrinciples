@@ -7,12 +7,12 @@ class Alarm
   attr_reader :alarm_count
 
   def initialize(sensor=Sensor.new)
-    @sensor = sensor 
+    @sensor = sensor
     turn_off_alarm
     @alarm_count = 0
   end
 
-  def check 
+  def check
     psi_pressure = @sensor.pop_next_pressure_psi_value
 
     if dangerous_pressure?(psi_pressure)
@@ -21,13 +21,13 @@ class Alarm
     end
   end
 
-  def on? 
+  def on?
     @alarm_on
   end
 
   private
   def dangerous_pressure?(pressure)
-    pressure < LOWPRESSURETHRESHOLD || 
+    pressure < LOWPRESSURETHRESHOLD ||
       pressure > HIGHPRESSURETHRESHOLD
   end
 

@@ -5,7 +5,7 @@ require 'pry-byebug'
 
 RSpec.describe Alarm do
   let(:sensor) { instance_double('sensor') }
-  let(:alarm) { Alarm.new(sensor) }
+  let(:alarm) { Alarm.new }
 
   describe '#check' do
     context 'when pressure is below the low limit' do
@@ -14,7 +14,7 @@ RSpec.describe Alarm do
       end
 
       it 'turns on the alarm' do
-        alarm.check
+        alarm.check(sensor)
         expect(alarm.alarm_on).to eq(true)
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Alarm do
       end
 
       it 'turns on the alarm' do
-        alarm.check
+        alarm.check(sensor)
         expect(alarm.alarm_on).to eq(true)
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe Alarm do
       end
 
       it 'does not turn on the alarm' do
-        alarm.check
+        alarm.check(sensor)
         expect(alarm.alarm_on).to eq(false)
       end
     end
