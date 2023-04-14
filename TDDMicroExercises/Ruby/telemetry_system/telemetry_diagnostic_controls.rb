@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require_relative './telemetry_client'
 
+# This is the entry point for the diagnostic controls.
 class TelemetryDiagnosticControls
   attr_reader :diagnostic_info
+
+  DIAGNOSTIC_CHANNEL_CONNECTION_STRING = '*111#'
 
   def initialize
     @telemetry_client = TelemetryClient.new
@@ -23,6 +28,4 @@ class TelemetryDiagnosticControls
     @telemetry_client.send(TelemetryClient::DIAGNOSTIC_MESSAGE)
     @diagnostic_info = @telemetry_client.receive
   end
-
-  DIAGNOSTIC_CHANNEL_CONNECTION_STRING = '*111#'
 end

@@ -1,7 +1,6 @@
 class TelemetryClient
-
   # The communication with the server is simulated in this implementation.
-  #Because the focus of the exercise is on the other class.
+  # Because the focus of the exercise is on the other class.
 
   DIAGNOSTIC_MESSAGE = 'AT#UD'
 
@@ -10,9 +9,7 @@ class TelemetryClient
     @diagnostic_message_just_sent = false
   end
 
-  def online_status
-    @online_status
-  end
+  attr_reader :online_status
 
   def connect(telemetry_server_connection_string)
     if telemetry_server_connection_string.nil? || telemetry_server_connection_string == ''
@@ -20,7 +17,7 @@ class TelemetryClient
     end
 
     # Fake the connection with 20% chances of success
-    success = rand() <= 0.2
+    success = rand <= 0.2
 
     @online_status = success
   end
@@ -30,14 +27,12 @@ class TelemetryClient
   end
 
   def send(message)
-    if message.nil? || message == ''
-      raise Exception, 'Argument Null'
-    end
+    raise Exception, 'Argument Null' if message.nil? || message == ''
 
     # The simulation of Send() actually just remember if the last message sent was a diagnostic message.
-    #This information will be used to simulate the Receive(). Indeed there is no real server listening.
+    # This information will be used to simulate the Receive(). Indeed there is no real server listening.
     @diagnostic_message_just_sent = message == DIAGNOSTIC_MESSAGE
-end
+  end
 
   def receive
     message = ''
@@ -54,14 +49,14 @@ end
               + "MODULATION TYPE............. PCM/FM\r\n" \
               + "TX Digital Los.............. 0.75\r\n" \
               + "RX Digital Los.............. 0.10\r\n" \
-              + "BEP Test.................... -5\r\n"  \
-              + "Local Rtrn Count............ 00\r\n"  \
-              + "Remote Rtrn Count........... 00"
+              + "BEP Test.................... -5\r\n" \
+              + "Local Rtrn Count............ 00\r\n" \
+              + 'Remote Rtrn Count........... 00'
     else
       # Simulate the reception of a response message returning a random message.
 
       rand(50..110).times do
-        message += rand(40..126).chr()
+        message += rand(40..126).chr
       end
     end
 
