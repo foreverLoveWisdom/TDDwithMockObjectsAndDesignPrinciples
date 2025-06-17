@@ -1,100 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BBCF3C67-8E31-48E3-AD2E-8C605E2E07BE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TDDMicroExercises.OneSolution</RootNamespace>
-    <AssemblyName>TDDMicroExercises.OneSolution</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <UpgradeBackupLocation />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Web" />
-    <Reference Include="nunit.framework">
-      <HintPath>lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="TelemetrySystem.Tests\MockTelemetryDataChannel.cs" />
-    <Compile Include="TelemetrySystem.Tests\TelemetryDiagnosticControlsTest.cs" />
-    <Compile Include="TelemetrySystem.Tests\StubTelemetryConnection.cs" />
-    <Compile Include="TelemetrySystem\IConnection.cs" />
-    <Compile Include="TelemetrySystem\IDataChannel.cs" />
-    <Compile Include="TelemetrySystem\TelemetryClientConnection.cs" />
-    <Compile Include="TelemetrySystem\TelemetryDataChannel.cs" />
-    <Compile Include="TelemetrySystem\TelemetryDiagnosticControls.cs" />
-    <Compile Include="TirePressureMonitoringSystem.Tests\AlarmTest.cs" />
-    <Compile Include="TirePressureMonitoringSystem.Tests\StubSensor.cs" />
-    <Compile Include="TirePressureMonitoringSystem\Alarm.cs" />
-    <Compile Include="TirePressureMonitoringSystem\ISensor.cs" />
-    <Compile Include="TirePressureMonitoringSystem\Sensor.cs" />
-    <Compile Include="TurnTicketDispenser\ITurnNumberSequence.cs" />
-    <Compile Include="TurnTicketDispenser.Tests\MockTurnNumberSequence.cs" />
-    <Compile Include="TurnTicketDispenser\TicketDispenser.cs" />
-    <Compile Include="TurnTicketDispenser\TurnNumberSequence.cs" />
-    <Compile Include="TurnTicketDispenser.Tests\TicketDispenserTest.cs" />
-    <Compile Include="TurnTicketDispenser\TurnTicket.cs" />
-    <Compile Include="UnicodeFileToHtmTextConverter\IUnicodeTextSource.cs" />
-    <Compile Include="UnicodeFileToHtmTextConverter.Tests\StubUnicodeTextSource.cs" />
-    <Compile Include="UnicodeFileToHtmTextConverter\UnicodeFileToHtmTextConverter.cs" />
-    <Compile Include="UnicodeFileToHtmTextConverter.Tests\UnicodeFileToHtmTextConverterTest.cs" />
-    <Compile Include="UnicodeFileToHtmTextConverter\UnicodeTextSourceFromFile.cs" />
-    <Compile Include="TirePressureMonitoringSystem.SomeDependencies\ASensorClient.cs" />
-    <Compile Include="TirePressureMonitoringSystem.SomeDependencies\AnAlarmClient1.cs" />
-    <Compile Include="TirePressureMonitoringSystem.SomeDependencies\AnAlarmClient2.cs" />
-    <Compile Include="TirePressureMonitoringSystem.SomeDependencies\AnAlarmClient3.cs" />
-    <Compile Include="UnicodeFileToHtmlTextConverter.SomeDependencies\aTextConverterClient1.cs" />
-    <Compile Include="UnicodeFileToHtmlTextConverter.SomeDependencies\aTextConverterClient2.cs" />
-    <Compile Include="UnicodeFileToHtmlTextConverter.SomeDependencies\aTextConverterClient3.cs" />
-    <Compile Include="TurnTicketDispenser.SomeDependencies\TicketDispenserClient.cs" />
-    <Compile Include="TurnTicketDispenser.SomeDependencies\TurnNumberSequenceClient.cs" />
-    <Compile Include="TurnTicketDispenser.SomeDependencies\TurnTicketAndSequenceClient.cs" />
-    <Compile Include="TurnTicketDispenser.SomeDependencies\TurnTicketClient.cs" />
-    <Compile Include="TelemetrySystem.SomeDependencies\TelemetryClientClient.cs" />
-    <Compile Include="TelemetrySystem.SomeDependencies\TelemetryDiagnosticControlsClient1.cs" />
-    <Compile Include="TelemetrySystem.SomeDependencies\TelemetryDiagnosticControlsClient2.cs" />
-    <Compile Include="TelemetrySystem.SomeDependencies\TelemetryDiagnosticControlsClient3.cs" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="lib\nunit.framework.dll" />
-    <None Include="lib\nunit.framework.xml" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
